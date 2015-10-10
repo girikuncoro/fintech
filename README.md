@@ -10,5 +10,9 @@ This project is currently configured for OSx/Unix.
 - Put all dependencies under `requirements.txt`
 - Perform installation dependencies `pip install -r requirements.txt`
 
+## Run
+- `python main.py`
+- Open browser at `http://localhost:5000`
+
 ## Development Note
 - Make new branch for every issue and merge to master
