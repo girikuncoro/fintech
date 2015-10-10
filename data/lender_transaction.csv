@@ -1,0 +1,11 @@
+sent_id,sent_ts,sent_amount,sent_to,sent_desc
+s001,1444498540,80000,Maria Guadalupe,Money is used to finance corn farming
+s002,1444584668,100000,Maria Luisa,Money is used to finance new grocery store
+s003,1444584672,72000,Alejandro,Money is used to finance rice farming
+s004,1444584691,96000,Marco Antonio,Money is used to finance small groceries
+s005,1444757468,45000,Miguel Angel,Money is used to finance vegetables farming
+s006,1444757487,100000,Miguel Angel,Money is used to finance fish farming
+s007,1444757510,25000,Jose Antonio,Money is used to finance taxi car
+s008,1444757533,10000,Rosa Maria,Money is used to finance taxi bike
+s009,1444757552,32000,Fransisco Javier,Money is used to finance corn farming
+s010,1444757578,18000,Fransisco Javier,Money is used to finance corn farming
