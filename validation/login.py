@@ -1,8 +1,14 @@
-import MySQLdb
+import psycopg2
+import os
 
 LOGIN_TABLE="LoginInfo"
-db=MySQLdb.connect(host="localhost", user="root", passwd="123", db="FinTech")
-cur=db.cursor()
+dbname=os.environ['DBNAME']
+dbuser=os.environ['DBUSER']
+dbpass=os.environ['DBPASS']
+dbhost=os.environ['DBHOST']
+
+conn = psycopg2.connect("dbname='"+dbname+"' user='"+dbuser+"' host='"+dbhost+"' password='"+dbpass+"'")
+cur=conn.cursor()
 
 # Displays the table specified by tablename argument
 def display_table(tablename):
@@ -27,7 +33,7 @@ def validate(username, password, role):
     return False
     
 def main():
-    print(validate("divyesh","123","lender"))
+    print(validate("diyesh","123","lender"))
 
 if __name__=="__main__":
     main()
