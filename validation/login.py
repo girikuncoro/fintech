@@ -1,6 +1,14 @@
 import psycopg2
 import os
 
+# Dummy for local deployment
+# Remove when deploying to Heroku
+os.environ['DBNAME'] = "fintech"
+os.environ['DBUSER'] = ""
+os.environ['DBPASS'] = ""
+os.environ['DBHOST'] = "localhost"
+##################################
+
 LOGIN_TABLE="LoginInfo"
 dbname=os.environ['DBNAME']
 dbuser=os.environ['DBUSER']
@@ -25,15 +33,9 @@ def insert_login_info(username, name, password, role):
     return True
 
 # Validates whether the username-password-role combination is present in database and correct
-def validate(username, password, role):
+def validate(username, password):
     cur.execute("SELECT * FROM "+LOGIN_TABLE)
     for row in cur.fetchall():
-        if row[0]==username and row[2]==password and row[3]==role:
-            return True
+        if row[0]==username and row[2]==password:
+            return row[3]
     return False
-    
-def main():
-    print(validate("diyesh","123","lender"))
-
-if __name__=="__main__":
-    main()
