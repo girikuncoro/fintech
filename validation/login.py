@@ -3,11 +3,11 @@ import os
 
 # Dummy for local deployment
 # Remove when deploying to Heroku
-os.environ['DBNAME'] = "fintech"
-os.environ['DBUSER'] = ""
-os.environ['DBPASS'] = ""
-os.environ['DBHOST'] = "localhost"
-##################################
+# os.environ['DBNAME'] = "fintech"
+# os.environ['DBUSER'] = ""
+# os.environ['DBPASS'] = ""
+# os.environ['DBHOST'] = "localhost"
+# ##################################
 
 LOGIN_TABLE="LoginInfo"
 dbname=os.environ['DBNAME']
