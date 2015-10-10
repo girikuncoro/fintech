@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, abort
 from validation.login import validate
 
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
 LENDER = "lender"
 CLIENT = "borrower"
@@ -37,4 +38,4 @@ def auth():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
