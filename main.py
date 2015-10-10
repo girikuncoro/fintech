@@ -1,14 +1,11 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
+from validation.login import validate
 
 app = Flask(__name__)
 
-LENDER = "lenders"
-CLIENT = "borrowers"
+LENDER = "lender"
+CLIENT = "borrower"
 
-
-def validate(username, password):
-    print username, password
-    return CLIENT
 
 @app.route("/")
 def main():
@@ -20,7 +17,7 @@ def login():
 
 @app.route("/lender")
 def lender():
-    return render_template("lender.html")
+    return render_template("index.html")
 
 @app.route("/client")
 def client():
@@ -30,12 +27,13 @@ def client():
 def auth():
     username = request.form["username"]
     password = request.form["password"]
+    print validate(username, password)
 
     if validate(username, password) == LENDER:
         return redirect(url_for('lender'))
     if validate(username, password) == CLIENT:
-        return render_template("borrower.html")
-    return redirect(url_for('client'))
+        return redirect(url_for('client'))
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
