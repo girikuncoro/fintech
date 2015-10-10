@@ -17,7 +17,7 @@ def login():
 
 @app.route("/lender")
 def lender():
-    return render_template("lender.html")
+    return render_template("index.html")
 
 @app.route("/client")
 def client():
