@@ -1,0 +1,5 @@
+lib/
+tmp/
+venv/
+*.pyc
+.DS_Store
