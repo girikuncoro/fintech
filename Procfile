@@ -1,1 +1,1 @@
-web: python main.py $(PORT)
+web: python bloomber-main.py ${PORT}
