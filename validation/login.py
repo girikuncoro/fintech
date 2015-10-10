@@ -8,12 +8,12 @@ cur=db.cursor()
 def display_table(tablename):
     cur.execute("SELECT * FROM "+tablename)
     for row in cur.fetchall():
-        print row[0]+" "+row[1]+" "+row[2]
+        print row[0]+" "+row[1]+" "+row[2]+" "+row[3]
 
 # Inserts the username, password and the role in the LoginInfo table. Returns True if insertion was successful, Else False
-def insert_login_info(username, password, role):
+def insert_login_info(username, name, password, role):
     try:
-        cur.execute("INSERT INTO "+LOGIN_TABLE+" VALUES('"+username+"','"+password+"','"+role+"');");
+        cur.execute("INSERT INTO "+LOGIN_TABLE+" VALUES('"+username+"','"+name+"','"+password+"','"+role+"');");
     except:
         return False
     return True
@@ -22,7 +22,7 @@ def insert_login_info(username, password, role):
 def validate(username, password, role):
     cur.execute("SELECT * FROM "+LOGIN_TABLE)
     for row in cur.fetchall():
-        if row[0]==username and row[1]==password and row[2]==role:
+        if row[0]==username and row[2]==password and row[3]==role:
             return True
     return False
     
