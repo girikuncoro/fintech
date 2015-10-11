@@ -1,5 +1,7 @@
 @import url('../lib/slick-grid//slick-default-theme.css');
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
 * {
   font-family: arial;
   /*font-size: 8pt;*/
@@ -7,6 +9,7 @@
 
 body {
   background: beige;
+  font-family: 'Raleway', sans-serif !important;
   padding: 0;
   margin: 8px;
 }
