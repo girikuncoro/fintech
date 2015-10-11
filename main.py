@@ -1,9 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 # from validation.login import validate
 from sns.send import addtotable, sendtotable
-from transaction.transaction import insert_transaction
+import os,sys
+sys.path.insert(0, './transaction')
+from transaction import insert_transaction
+from transaction import get_total_amount
+from transaction import get_user_info
 
-import os
+import os,simplejson
 
 app = Flask(__name__)
 
@@ -39,7 +43,7 @@ def saveTransactions():
         amount=transaction['amount']
         tdate=transaction['transactionDate']
         desc=transaction['description']
-        
+        print "Inside transaction";
         insert_transaction(tid,accountId,requesterId,amount,tdate,desc)
 
         if(borrowers.get(accountId) != None):
@@ -102,6 +106,20 @@ def auth():
         return redirect(url_for('client'))
     return redirect(url_for('login'))
 
+
+@app.route('/userInfo',methods=["POST"])
+def getUserInfo() :
+    userId = request.get_json(force=True);
+    result = get_total_amount(userId['userId']);
+    userInfo = get_user_info(userId['userId']);
+    userInformation = {};
+    userInformation['accountId'] = userInfo[0];
+    userInformation['balance'] = result[1];
+    userInformation['currency'] = result[2];
+    userInformation['name'] = userInfo[1];
+    userInformation['role'] = userInfo[3]; 
+    
+    return simplejson.dumps(userInformation);
 
 port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":

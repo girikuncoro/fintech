@@ -1,5 +1,5 @@
 import psycopg2
-import os
+import os,traceback,sys
 import simplejson as json
 
 # Dummy for local deployment
@@ -22,14 +22,22 @@ def print_transactions():
 def insert_transaction(transactionId, fromUser, toUser, amount, transDate, description):
     try:
         cur.execute("INSERT INTO Transaction (transactionid, fromuser, touser, amount, transdate, status) VALUES ('"+transactionId+"','"+fromUser+"','"+toUser+"',"+str(amount)+",'"+transDate+"','"+description+"');")
-    except:
+        print "Inside Insert";
+        conn.commit();
+    except :
         print "Insertion Error"
+        traceback.print_exc(file=sys.stdout)
 
 def get_total_amount(userName):
-    cur.execute("SELECT Account.amount_held FROM Account WHERE Account.username='"+userName+"';")
+    cur.execute("SELECT * FROM Account WHERE Account.username='"+userName+"';")
     
     for row in cur.fetchall():
-        return row[0];
+        return row;
+
+def get_user_info(userName):
+    cur.execute("SELECT * FROM loginInfo WHERE loginInfo.username='"+userName+"';")
+    for row in cur.fetchall():
+        return row;
 
 def get_transactions_for_id(userName):
     

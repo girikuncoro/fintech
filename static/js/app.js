@@ -2,8 +2,8 @@
 
 var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod']);
 
-modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc",
-	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc) {
+modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc","loginService",
+	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc,loginService) {
 	$scope.transactionFile = "";
 	$scope.upload = function(form) {
 		console.log($scope.transactionFile);
@@ -64,6 +64,15 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		
 	}
 
+	$scope.init = function(user) {
+		$scope.loggedInUser = user;
+		loginService.getUserInfo({userId:user}).then(function(success,data){
+			$scope.loggedInUserInfo = success.data;
+		},function(error){
+			console.log("Some Error has Occured");
+		});
+	}
+
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -84,7 +93,27 @@ modernMobile.directive("fileHandler",[function() {
 		}
 	}
 }])
+modernMobile.factory('loginService',['$http','$location',function($http,$location){
 
+	var loginService;
+	loginService = {
+		'getUserInfo' : function(user) {
+
+			var host = $location.host();
+			var port = $location.port();
+			var url = "http://"+host;
+			if(typeof port !== "undefined" &&  port !== "")
+				url += ":"+port;
+			url  += "/userInfo";
+			return $http({
+				'method':'POST',
+				'data' : user,
+				 'url' : url
+			});
+		}
+	}
+	return loginService;
+}]);
 
 modernMobile.factory('transactionSvc',['$http',function($http){
 	var transactionSvc = {
