@@ -22,7 +22,7 @@ body {
     #page-wrapper {
         position: inherit;
         margin: 0;
-        padding: 0 30px;
+        padding: 2em;
         border-left: 1px solid #e7e7e7;
     }
 }
