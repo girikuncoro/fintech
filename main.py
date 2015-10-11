@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 # from validation.login import validate
 from sns.send import addtotable, sendtotable
-from transaction.transaction import insert_transaction
+from transaction import insert_transaction
 
 import os
 
