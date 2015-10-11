@@ -55,7 +55,7 @@ def saveTransactions():
             addtotable(borrowers.get(accountId))
             newEntry = {};
             newEntry['token'] = borrowers.get(accountId);
-            newEntry['message'] = "Hi! You have received amount of " + str(transaction['amount']) + " from  Modern Money. Wish you good luck from Modern."
+            newEntry['message'] = "You have received $" + str(transaction['amount']) + " from Modern. Have a nice day!"
             print(newEntry);
             sendtotable(newEntry);
         
@@ -75,7 +75,7 @@ def saveTransactionsForClient():
             addtotable(borrowers.get(accountId))
             newEntry = {};
             newEntry['token'] = borrowers.get(accountId);
-            newEntry['message'] = "Hi! You have received amount of " + str(transaction['amount']) + " from  Modern Money. Wish you good luck from Modern."
+            newEntry['message'] = "You have received $" + str(transaction['amount']) + " from Modern. Have a nice day!"
             print(newEntry);
             sendtotable(newEntry);
         

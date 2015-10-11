@@ -491,6 +491,9 @@ input[type="password"] {
     cursor: inherit;
     display: block;
 }
+.navbar-brand>img {
+    display: inline-block;
+}
 
 /*#loaderDiv {
    position: fixed;
