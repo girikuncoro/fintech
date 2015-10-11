@@ -4,3 +4,4 @@
 
 Flask==0.10.1
 psycopg2==2.6.1
+simplejson==3.8.0
