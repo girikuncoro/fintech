@@ -131,7 +131,10 @@ def getRemainingBalance(totalBalance,userId):
     data  = get_transactions_for_id(userId);
     for trans in data:
         print(trans['amount']);
-        totalBalance-=trans['amount'];
+        if(trans['toUser'] == userId):
+            totalBalance+=trans['amount'];
+        else:
+            totalBalance-=trans['amount'];    
     return totalBalance;    
 @app.route('/getTransactions/<userId>',methods=["GET"])
 def getTransactions(userId):
