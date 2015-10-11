@@ -56,11 +56,11 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		var data = [];
 		if(val) {
 			data.push($scope.individualTransaction1.to);
-			transactionSvc.makeTransactions(data,$scope.individualTransaction1.requesterId);
+			transactionSvc.makeIndividualTransaction(data,$scope.individualTransaction1.requesterId);
 		}
 		else {
 			data.push($scope.individualTransaction.to);
-			transactionSvc.makeTransactions(data,$scope.individualTransaction.requesterId);
+			transactionSvc.makeIndividualTransaction(data,$scope.individualTransaction.requesterId);
 		}
 		
 	}
