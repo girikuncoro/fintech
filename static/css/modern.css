@@ -10,9 +10,9 @@ body {
 
 input[type="text"],
 input[type="amount"] {
-  background: #CCC;
-  border: none;
-  border-radius: 0.5em;
+  background: #EEE;
+  border: 1px solid white;
+  border-radius: 0.5em !important;
   box-shadow: none;
   outline: none;
   transition: all 0.25s;
@@ -22,7 +22,7 @@ input[type="text"]:active,
 input[type="amount"]:active,
 input[type="text"]:focus,
 input[type="amount"]:focus {
-  background: #BBB;
+  background: #E0E0E0;
   border: 1px solid #DDD;
 }
 
