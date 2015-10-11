@@ -14,6 +14,21 @@ borrowers = {
     "+5211553788466" : "798c038792891ae421d8987f8c3d3d354566785648655dd09599237c0eafa7e7",
     "+5217222842257" : "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9a2c71"
 };
+
+dbname=os.environ['DBNAME']
+dbuser=os.environ['DBUSER']
+dbpass=os.environ['DBPASS']
+dbhost=os.environ['DBHOST']
+
+conn = psycopg2.connect("dbname='"+dbname+"' user='"+dbuser+"' host='"+dbhost+"' password='"+dbpass+"'")
+cur=conn.cursor()
+
+def insert_transaction(transactionId, fromUser, toUser, amount, transDate, description):
+    try:
+        cur.execute("INSERT INTO Transaction (transactionid, fromuser, touser, amount, transdate, status) VALUES ('"+transactionId+"','"+fromUser+"','"+toUser+"',"+str(amount)+",'"+transDate+"','"+description+"');")
+    except:
+        print "Insertion Error"
+
 @app.route("/")
 def main():
     return redirect(url_for('lender'))
