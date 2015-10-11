@@ -4,6 +4,7 @@ from sns.send import addtotable, sendtotable
 
 #import transaction
 import os
+import psycopg2
 
 app = Flask(__name__)
 
