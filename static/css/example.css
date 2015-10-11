@@ -47,10 +47,9 @@ li {
   border: 1px solid gray;
   border-bottom: 0;
   border-top: 0;
-  background: url('../images/header-bg.gif') repeat-x center top;
   color: black;
-  height: 24px;
-  line-height: 24px;
+  height: 32px;
+  line-height: 32px;
 }
 
 .grid-header label {
