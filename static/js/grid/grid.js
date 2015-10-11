@@ -3,8 +3,8 @@
  */
 
 var gridModule = angular.module("transactionGridMod",[]);
-var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"gridConfigSvc","gridSvc","$rootScope",
-     function($http,$scope,gridConfigSvc,gridService,$rootScope){
+var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"gridConfigSvc","gridSvc","$rootScope","transactionSvc",
+     function($http,$scope,gridConfigSvc,gridService,$rootScope,transactionSvc){
 		
 		var columns = gridConfigSvc.getColDefs();
 		var data = gridService.getData();
@@ -33,8 +33,14 @@ var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"
 			 dataView.setItems(newData);
 			
 		 }
-	
+
+		 var saveTransactions = function(event) {
+		 	var transactionData = dataView.getItems();
+		 	transactionSvc.makeTransactions(transactionData);
+		 }
+ 	
 		 $rootScope.$on('reload-grid',reloadGrid);
+		 $rootScope.$on('save-data',saveTransactions);
 	
 }]);
 
@@ -98,7 +104,11 @@ var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridCo
 		},
 		"getData" : function() {
 			return gridData;
+		},
+
+		"getTransactionData" : function() {
+
 		}
-	}
+ 	}
 	return gridService;
 }])

@@ -1,16 +1,23 @@
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-10">
 		<form ng-submit="upload()">
 			<div class="input-group">
-				<span class="input-group-addon">Upload Transaction</span> <input
+				<span class="btn btn-default btn-file pull-right">
+				Upload Transaction <input type="file" file-handler type="file" ng-model = "transactionFile">
+				</span>
+				<!-- <span class="input-group-addon">Upload Transaction</span> <input
 					file-handler type="file" class="form-control"
-					ng-model="transactionFile">
+					ng-model="transactionFile"> -->
 				<!-- <input type="submit" name = "uploadFile">	 -->
 			</div>
 		</form>
 	</div>
 </div>
+<br/>
 <div class="row" ng-controller="transactionGridCtrl">
+	<div class = "col-md-12">
 	<div id="transaction-grid" style="max-height: 500px; min-height: 300px">
+	</div>
+	 <button type="button" class="btn btn-success pull-right" ng-click = "saveBulkTransaction()">Make Transaction</button>
 	</div>
 </div>

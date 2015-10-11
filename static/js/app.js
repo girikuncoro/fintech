@@ -1,7 +1,5 @@
 'use strict';
 
-var API_CALL = '/api/v1.0/data/country/';
-
 var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod']);
 
 modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", function($scope,$http,$log,gridSvc,$rootScope) {
@@ -29,6 +27,10 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 	$scope.loadTab = function(index) {
 		$scope.currentLendingTab = $scope.lendingTabs[index];
 	}
+
+	$scope.saveBulkTransaction = function() {
+		$scope.$emit('save-data');
+	}
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -49,3 +51,14 @@ modernMobile.directive("fileHandler",[function() {
 		}
 	}
 }])
+
+
+modernMobile.factory('transactionSvc',['$http',function($http){
+	var transactionSvc = {
+		'makeTransactions' : function(transactionData) {
+			console.log(transactionData);
+		}
+	}
+
+	return transactionSvc;
+}]);
