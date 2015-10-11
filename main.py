@@ -13,7 +13,7 @@ tokenSpecificGiri = "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9
 
 @app.route("/")
 def main():
-    return redirect(url_for('lender.html'))
+    return redirect(url_for('lender'))
 
 @app.route('/send', methods=['GET', 'POST'])
 def sendstuffs():
@@ -47,9 +47,13 @@ def login():
 def lender():
     return render_template("lender.html")
 
-@app.route("/client")
+@app.route("/client/1")
 def client():
     return render_template("borrower.html")
+
+@app.route("/client/2")
+def client():
+    return render_template("borrower1.html")
 
 @app.route("/auth", methods=["POST"])
 def auth():
