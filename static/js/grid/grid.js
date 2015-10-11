@@ -3,8 +3,8 @@
  */
 
 var gridModule = angular.module("transactionGridMod",[]);
-var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"gridConfigSvc","gridSvc","$rootScope",
-     function($http,$scope,gridConfigSvc,gridService,$rootScope){
+var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"gridConfigSvc","gridSvc","$rootScope","transactionSvc",
+     function($http,$scope,gridConfigSvc,gridService,$rootScope,transactionSvc){
 		
 		var columns = gridConfigSvc.getColDefs();
 		var data = gridService.getData();
@@ -33,8 +33,14 @@ var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"
 			 dataView.setItems(newData);
 			
 		 }
-	
+
+		 var saveTransactions = function(event) {
+		 	var transactionData = dataView.getItems();
+		 	transactionSvc.makeTransactions(transactionData);
+		 }
+ 	
 		 $rootScope.$on('reload-grid',reloadGrid);
+		 $rootScope.$on('save-data',saveTransactions);
 	
 }]);
 
@@ -43,9 +49,9 @@ var gridCfgService = gridModule.factory("gridConfigSvc",[function(){
 		"getColDefs" : function() {
 			var columnDefs = [
 	                  {name: "Id", field: "id",id:"id"},
-	                  {name: "Date", field: "transaction",id:"transaction"},
+	                  {name: "Date", field: "transactionDate",id:"transactionDate"},
 	                  {name: "Amount", field: "amount",id:"amount"},
-	                  {name: "Account Holder Name", field: "account",id:"account"},
+	                  {name: "Account Holder Name", field: "accountId",id:"accountId"},
 	                  {name: "Description", field: "description",id:"description"}
 	              ];
 			return columnDefs;
@@ -58,7 +64,7 @@ var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridCo
 	var gridService;
 	var grid = {};
 	var gridData = [];
-	var fields = ['id','transaction','amount','account','description'];
+	var fields = ['id','transactionDate','amount','accountId','description'];
 	gridService = {
 		"getGrid" : function() {
 			var columnDefs = gridConfigSvc.getColDefs();
@@ -98,7 +104,11 @@ var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridCo
 		},
 		"getData" : function() {
 			return gridData;
+		},
+
+		"getTransactionData" : function() {
+
 		}
-	}
+ 	}
 	return gridService;
 }])

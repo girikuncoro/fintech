@@ -95,25 +95,37 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper" ng-controller = "modernMobileCtrl">
-                <div class="row">
-                    <div class="col-md-12" >
-                    <form ng-submit = "upload()" >
-                        <div class="input-group">
-                            <span class="input-group-addon">Upload Transaction</span>
-                            <input file-handler
-                                type="file" class="form-control" ng-model = "transactionFile" >
-                            <!-- <input type="submit" name = "uploadFile">   -->
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="panel panel-default">
+                    <div class = "panel panel-heading">
+                        Send Money
+                    </div>
+                    <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="accountId">Mobile Number:</label>
+                            <input type="text" ng-model = "individualTransaction.accountId" class="form-control" placeholder = "Enter the Mobile Number" id="accountId" value = "+16073799018">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Amount:</label>
+                          <input type="amount" class="form-control" ng-model = "individualTransaction.amount" placeholder = "Enter the Amount" id="amount" value = "500.00">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd">Description:</label>
+                          <input type="amount" class="form-control" ng-model = "individualTransaction.description" placeholder = "Enter any transaction comments" id="description" value = "Hi!!">
                         </div>
                     </form>
-                    </div>
-                </div>
-                <br/>
+                  <br/>
+                <button type="button" class="btn btn-success pull-right" ng-click="makeIndividualTransaction()">Make Transaction</button>
+            </div>
+          
+             
+        </div>      
+    </div>
 
-                <div class="row" ng-controller="transactionGridCtrl">
-                    <div id = "transaction-grid" style = "max-height : 500px;min-height:300px">
-                    </div>
-                </div>
-                <button type="button" class="btn btn-success pull-right">Make Transaction</button>
+               
         </div>
         <!-- /#page-wrapper -->
 

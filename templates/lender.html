@@ -78,7 +78,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation">v
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -98,8 +98,8 @@
         </nav>
         <div id="page-wrapper" ng-controller = "modernMobileCtrl">
         
-            <ul class="nav nav-tabs nav-justified" >
-                <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="" >
+            <ul class="nav nav-pills nav-tabs nav-justified" >
+                <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="[[(lendingTab == currentLendingTab) ? 'active':'']]" >
                     <a ng-click = "loadTab($index)">[[lendingTab.displayName]]</a>
                 </li>
             </ul>
@@ -107,7 +107,6 @@
                 <div class = "row" >
                     <div ng-include = "currentLendingTab.templateName"></div>
                 </div>
-                <button type="button" class="btn btn-success pull-right">Make Transaction</button>
         </div>
         <!-- /#page-wrapper -->
 
