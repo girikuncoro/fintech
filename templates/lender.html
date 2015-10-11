@@ -41,7 +41,7 @@
 <meta charset="UTF-8">
 <title>Modern</title>
 </head>
-<body>
+<body  ng-controller = "modernMobileCtrl" ng-init = "init('+11234567899')">
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -64,7 +64,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Wayne Johnson</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> [[loggedInUserInfo.name]] </a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -79,7 +79,7 @@
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
-                <p class="text-center" style = "padding-top:10px;">Total Amount: $1,000,000.00</p>
+                <p class="text-center" style = "padding-top:10px;">Total Amount: $[[loggedInUserInfo.balance | number:2]]</p>
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -97,7 +97,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div id="page-wrapper" ng-controller = "modernMobileCtrl">
+        <div id="page-wrapper">
         
             <ul class="nav nav-pills nav-tabs nav-justified" >
                 <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="[[(lendingTab == currentLendingTab) ? 'active':'']]" >
