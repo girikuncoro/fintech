@@ -108,12 +108,13 @@ modernMobile.factory('loginService',['$http','$location',function($http,$locatio
 	loginService = {
 		'getUserInfo' : function(user) {
 
-			var host = $location.host();
-			var port = $location.port();
-			var url = "http://"+host;
-			if(typeof port !== "undefined" &&  port !== "")
-				url += ":"+port;
-			url  += "/userInfo";
+			// var host = $location.host();
+			// var port = $location.port();
+			// var url = "http://"+host;
+			// if(typeof port !== "undefined" &&  port !== "")
+			// 	url += ":"+port;
+			var 
+			url  = "/userInfo";
 			return $http({
 				'method':'POST',
 				'data' : user,
