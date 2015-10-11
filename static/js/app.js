@@ -34,7 +34,7 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		to : {
 			accountId:'+5217222842257',
 			amount:'500.00',
-			description:'💰',
+			description:'Rent',
 			transactionDate:'1444565700',
 			id:'s101'
 		},
@@ -45,7 +45,7 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		to :{
 			accountId:'+11234567899',
 			amount:'1500.00',
-			description:'💸',
+			description:'Payback',
 			transactionDate:'1444565500',
 			id:'s100'
 		},
