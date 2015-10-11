@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 from validation.login import validate
+from sns.send import addtotable, sendtotable
 import os
 
 app = Flask(__name__)
@@ -11,6 +12,14 @@ CLIENT = "borrower"
 @app.route("/")
 def main():
     return redirect(url_for('login'))
+
+@app.route('/send', methods=['GET', 'POST'])
+def sendstuffs():
+    sendentries = request.get_json(force=True)
+    for token in sendentries:
+        addtotable(token["token"])
+        sendtotable(token)
+    return "done send!"
 
 @app.route("/login")
 def login():
@@ -28,7 +37,6 @@ def client():
 def auth():
     username = request.form["username"]
     password = request.form["password"]
-    print validate(username, password)
 
     if validate(username, password) == LENDER:
         return redirect(url_for('lender'))
