@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
-from validation.login import validate
+# from validation.login import validate
 from sns.send import addtotable, sendtotable
 import os
 
@@ -13,7 +13,7 @@ tokenSpecificGiri = "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9
 
 @app.route("/")
 def main():
-    return redirect(url_for('lender.html'))
+    return redirect(url_for('lender'))
 
 @app.route('/send', methods=['GET', 'POST'])
 def sendstuffs():
@@ -65,4 +65,4 @@ def auth():
 
 port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":
-    app.run(debug=True, port=port,host="0.0.0.0")
+    app.run(debug=True, port=port)
