@@ -17,6 +17,9 @@ body {
 * {
   font-family: 'Raleway', sans-serif !important;
 }
+.fa {
+  font-family: "FontAwesome" !important;
+}
 
 input[type="text"],
 input[type="amount"] {
