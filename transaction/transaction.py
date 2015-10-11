@@ -14,6 +14,16 @@ dbhost=os.environ['DBHOST']
 conn = psycopg2.connect("dbname='"+dbname+"' user='"+dbuser+"' host='"+dbhost+"' password='"+dbpass+"'")
 cur=conn.cursor()  
 
+def print_transactions():
+    cur.execute("SELECT * FROM Transaction")
+    for row in cur.fetchall():
+        print(row[0]+" "+row[1]+" "+row[2]+" "+str(row[3])+" "+row[4]+" "+row[5])
+
+def insert_transaction(transactionId, fromUser, toUser, amount, transDate, description):
+    try:
+        cur.execute("INSERT INTO Transaction (transactionid, fromuser, touser, amount, transdate, status) VALUES ('"+transactionId+"','"+fromUser+"','"+toUser+"',"+str(amount)+",'"+transDate+"','"+description+"');")
+    except:
+        print "Insertion Error"
 
 def get_total_amount(userName):
     cur.execute("SELECT Account.amount_held FROM Account WHERE Account.username='"+userName+"';")
@@ -42,6 +52,9 @@ def get_transactions_for_id(userName):
 def main():
     print(get_transactions_for_id("divyesh"))
     print(get_total_amount("divyesh"))
+    insert_transaction("t008", "username1","receiver1","5694","06/04/2012","Success")
+    print_transactions()
+    conn.commit()
 
 if __name__ == "__main__":
     main()
