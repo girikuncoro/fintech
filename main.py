@@ -92,11 +92,11 @@ def login():
 def lender():
     return render_template("lender.html")
 
-@app.route("/client/1")
+@app.route("/client1")
 def client1():
     return render_template("borrower.html")
 
-@app.route("/client/2")
+@app.route("/client2")
 def client2():
     return render_template("borrower1.html")
 
