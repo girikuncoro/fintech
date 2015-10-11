@@ -16,7 +16,7 @@ cur=conn.cursor()
 
 def get_transactions_for_id(userName):
     
-    cur.execute("SELECT * FROM Transaction WHERE Transaction.fromUser="+userName+" OR Transaction.toUser="+toUser)
+    cur.execute("SELECT * FROM Transaction WHERE Transaction.fromUser="+userName+" OR Transaction.toUser="+userName)
     
     #transactionId, fromUser, toUser, amount, transDate
     data = {}
