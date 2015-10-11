@@ -6,11 +6,14 @@ classes should alter those!
 */
 
 .slick-header-columns {
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid #CCC;
 }
 
 .slick-header-column {
-  border-right: 1px solid silver;
+  border-right: 1px solid #CCC;
+}
+.slick-header-column:last-child {
+  border-right: none;
 }
 
 .slick-header-column:hover, .slick-header-column-active {
