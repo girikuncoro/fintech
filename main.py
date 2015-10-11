@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 from validation.login import validate
+import os
 
 app = Flask(__name__)
 
@@ -36,5 +37,6 @@ def auth():
     return redirect(url_for('login'))
 
 
+port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, port=port, host="0.0.0.0")
