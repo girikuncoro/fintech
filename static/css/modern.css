@@ -74,11 +74,11 @@ input[type="amount"]:focus {
 
 @media(min-width:768px) {
     #page-wrapper {
+        box-shadow: 0 1px 2px 2px #EEE;
         width: 740px;
         position: inherit;
         margin: auto;
         padding: 2em;
-        border-left: 1px solid #e7e7e7;
     }
 }
 
