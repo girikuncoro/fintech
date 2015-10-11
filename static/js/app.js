@@ -2,8 +2,8 @@
 
 var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod','historyTransactionMod']);
 
-modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc","loginService",
-	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc,loginService) {
+modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc","loginService",'msgService',
+	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc,loginService,msgService) {
 	$scope.transactionFile = "";
 	$scope.upload = function(form) {
 		console.log($scope.transactionFile);
@@ -84,7 +84,12 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		$scope.history = true;
 		if(index != 2)
 			$scope.history=false;
-	}					
+	}
+
+	$scope.showMessage = false;	
+	$scope.messageInfo = msgService.getMessage();
+//	$scope.messageInfo.disp = false;
+	// $scope.messageInfo.msg = "";				
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -135,7 +140,7 @@ modernMobile.factory('loginService',['$http','$location',function($http,$locatio
 	return loginService;
 }]);
 
-modernMobile.factory('transactionSvc',['$http',function($http){
+modernMobile.factory('transactionSvc',['$http','msgService',function($http,msgService){
 	var transactionSvc = {
 		'makeTransactions' : function(transactionData) {
 			var data = {};
@@ -150,9 +155,9 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 				'data' : data,
 				'url' : url,	
 			}).then(function(success){
-
+				msgService.showMessage("Transaction successfull");
 			},function(failure){
-
+				msgService.showErrorMessage("Transaction failed");
 			})
 		},
 		'makeIndividualTransaction' : function(transactionData,requesterId) {
@@ -175,5 +180,28 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 	}
 	return transactionSvc;
 }]);
+
+modernMobile.factory('msgService',[function(){
+	var msgSvc;
+	var displaMsg = {
+		disp:false,
+		msg :""
+	}
+	msgSvc = {
+		'showMessage' : function(ms) {
+			displaMsg.disp = true;
+			displaMsg.msg = ms;
+		},
+		'showErrorMessage' : function(ms) {
+			displaMsg.disp = true;
+			displaMsg.msg = ms;
+		},
+		'getMessage' : function(ms) {
+			return displaMsg;
+		}
+	}
+
+	return msgSvc;
+}])
 
 

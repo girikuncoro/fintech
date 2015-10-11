@@ -55,7 +55,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Modern</a>
+                <div class="navbar-brand" href="lender">
+                    <img src = "../static/images/roundededges.png" style = "height:40px;width:43px;"></img>
+                    <span>Modern</span>
+                </div>
             </div>
             <!-- /.navbar-header -->
 
@@ -68,7 +71,7 @@
             <!-- /.navbar-top-links -->
         </nav>
         <div id="page-wrapper">
-            
+            <div class = "alert alert-success" ng-show = "messageInfo.disp">[[messageInfo.msg]]</div> 
             <div ng-show = "!history">
                 <ul class="nav nav-pills nav-tabs nav-justified" >
                     <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="[[(lendingTab == currentLendingTab) ? 'active':'']]" >
@@ -90,7 +93,7 @@
     </div>
 
     <div id="loaderDiv" loader>
-    <img src="src/assets/img/ajax_loader.gif" class="ajax-loader"/>
+    
 </div>
     <!-- /#wrapper -->
 </body>
