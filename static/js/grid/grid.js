@@ -49,9 +49,9 @@ var gridCfgService = gridModule.factory("gridConfigSvc",[function(){
 		"getColDefs" : function() {
 			var columnDefs = [
 	                  {name: "Id", field: "id",id:"id"},
-	                  {name: "Date", field: "transaction",id:"transaction"},
+	                  {name: "Date", field: "transactionDate",id:"transactionDate"},
 	                  {name: "Amount", field: "amount",id:"amount"},
-	                  {name: "Account Holder Name", field: "account",id:"account"},
+	                  {name: "Account Holder Name", field: "accountId",id:"accountId"},
 	                  {name: "Description", field: "description",id:"description"}
 	              ];
 			return columnDefs;
@@ -64,7 +64,7 @@ var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridCo
 	var gridService;
 	var grid = {};
 	var gridData = [];
-	var fields = ['id','transaction','amount','account','description'];
+	var fields = ['id','transactionDate','amount','accountId','description'];
 	gridService = {
 		"getGrid" : function() {
 			var columnDefs = gridConfigSvc.getColDefs();

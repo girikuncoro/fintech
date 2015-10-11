@@ -2,7 +2,8 @@
 
 var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod']);
 
-modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", function($scope,$http,$log,gridSvc,$rootScope) {
+modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc",
+	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc) {
 	$scope.transactionFile = "";
 	$scope.upload = function(form) {
 		console.log($scope.transactionFile);
@@ -31,6 +32,18 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 	$scope.saveBulkTransaction = function() {
 		$scope.$emit('save-data');
 	}
+
+	$scope.individualTransaction = {
+		accountId:'+16073799018',
+		amount:'500.00',
+		description:'Hi!!'
+	};
+
+	$scope.makeIndividualTransaction = function() {
+		var data = [];
+		data.push($scope.individualTransaction);
+		transactionSvc.makeTransactions(data);
+	}
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -56,7 +69,40 @@ modernMobile.directive("fileHandler",[function() {
 modernMobile.factory('transactionSvc',['$http',function($http){
 	var transactionSvc = {
 		'makeTransactions' : function(transactionData) {
+			var data = {};
+			data['requests']  = transactionData;
+			data['requestType'] = 'Send';
+			data['requesterId'] = 'Abhishek';
+
+			var url = "saveTransactions";
 			console.log(transactionData);
+			$http({
+				'method' : 'POST',
+				'data' : data,
+				'url' : url,	
+			}).then(function(success){
+
+			},function(failure){
+
+			})
+		},
+		'makeIndividualTransaction' : function(data) {
+			var data = {};
+			data['requests']  = data;
+			data['requestType'] = 'Send';
+			data['requesterId'] = 'Abhishek';
+
+			var url = "saveTransactions";
+			console.log(transactionData);
+			$http({
+				'method' : 'POST',
+				'data' : data,
+				'url' : url,	
+			}).then(function(success){
+
+			},function(failure){
+
+			})
 		}
 	}
 
