@@ -27,7 +27,7 @@ def display_table(tablename):
 # Inserts the username, password and the role in the LoginInfo table. Returns True if insertion was successful, Else False
 def insert_login_info(username, name, password, role):
     try:
-        cur.execute("INSERT INTO "+LOGIN_TABLE+" VALUES('"+username+"','"+name+"','"+password+"','"+role+"');");
+        cur.execute("INSERT INTO "+LOGIN_TABLE+"(username, name, password, role) VALUES('"+username+"','"+name+"','"+password+"','"+role+"');");
     except:
         return False
     return True

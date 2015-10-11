@@ -12,7 +12,14 @@ dbpass=os.environ['DBPASS']
 dbhost=os.environ['DBHOST']
 
 conn = psycopg2.connect("dbname='"+dbname+"' user='"+dbuser+"' host='"+dbhost+"' password='"+dbpass+"'")
-cur=conn.cursor()
+cur=conn.cursor()  
+
+
+def get_total_amount(userName):
+    cur.execute("SELECT Account.amount_held FROM Account WHERE Account.username='"+userName+"';")
+    
+    for row in cur.fetchall():
+        return row[0];
 
 def get_transactions_for_id(userName):
     
@@ -34,6 +41,7 @@ def get_transactions_for_id(userName):
 
 def main():
     print(get_transactions_for_id("divyesh"))
+    print(get_total_amount("divyesh"))
 
 if __name__ == "__main__":
     main()
