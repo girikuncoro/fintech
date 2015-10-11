@@ -8,9 +8,10 @@ app = Flask(__name__)
 LENDER = "lender"
 CLIENT = "borrower"
 
-#tokenSpecific = "798c038792891ae421d8987f8c3d3d354566785648655dd09599237c0eafa7e7"
-tokenSpecificGiri = "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9a2c71";
-
+borrowers = {
+    "+5211553788466" : "798c038792891ae421d8987f8c3d3d354566785648655dd09599237c0eafa7e7",
+    "+5217222842257" : "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9a2c71"
+};
 @app.route("/")
 def main():
     return redirect(url_for('lender'))
@@ -30,13 +31,38 @@ def saveTransactions():
     sendentries = transactions['requests'];
 
     for transaction in sendentries:
-        addtotable(tokenSpecificGiri)
-        newEntry = {};
-        newEntry['token'] = tokenSpecificGiri;
-        newEntry['message'] = "Hi! You have received amount of " + str(transaction['amount']) + " from Modern Money. Wish you good luck from Modern."
-        print(newEntry);
-        sendtotable(newEntry);
+        accountId = transaction['accountId'];
+        if(borrowers.get(accountId) != None):
+            addtotable(borrowers.get(accountId))
+            newEntry = {};
+            newEntry['token'] = borrowers.get(accountId);
+            newEntry['message'] = "Hi! You have received amount of " + str(transaction['amount']) + " from  Modern Money. Wish you good luck from Modern."
+            print(newEntry);
+            sendtotable(newEntry);
+        
+       
     return "done send!"
+
+
+@app.route('/client/saveTransactions', methods=['POST'])
+def saveTransactionsForClient():
+   # print(request.get_json(force=True));
+    transactions = request.get_json(force=True)
+    sendentries = transactions['requests'];
+
+    for transaction in sendentries:
+        accountId = transaction['accountId'];
+        if(borrowers.get(accountId) != None):
+            addtotable(borrowers.get(accountId))
+            newEntry = {};
+            newEntry['token'] = borrowers.get(accountId);
+            newEntry['message'] = "Hi! You have received amount of " + str(transaction['amount']) + " from  Modern Money. Wish you good luck from Modern."
+            print(newEntry);
+            sendtotable(newEntry);
+        
+       
+    return "done send!"
+
 
 
 @app.route("/login")
@@ -48,11 +74,11 @@ def lender():
     return render_template("lender.html")
 
 @app.route("/client/1")
-def client():
+def client1():
     return render_template("borrower.html")
 
 @app.route("/client/2")
-def client():
+def client2():
     return render_template("borrower1.html")
 
 @app.route("/auth", methods=["POST"])

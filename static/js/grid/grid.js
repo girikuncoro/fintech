@@ -44,15 +44,16 @@ var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"
 	
 }]);
 
-var gridCfgService = gridModule.factory("gridConfigSvc",[function(){
+var gridCfgService = gridModule.factory("gridConfigSvc",['formatters',function(formatters){
 	return {
 		"getColDefs" : function() {
 			var columnDefs = [
-	                  {name: "Id", field: "id",id:"id"},
-	                  {name: "Date", field: "transactionDate",id:"transactionDate"},
-	                  {name: "Amount", field: "amount",id:"amount"},
-	                  {name: "Account Holder Name", field: "accountId",id:"accountId"},
-	                  {name: "Description", field: "description",id:"description"}
+	                  {name: "Id", field: "id",id:"id",sortable:true},
+	                  {name: "Date", field: "transactionDate",id:"transactionDate",formatter:formatters.dateFormatter(),sortable:true },
+	                  {name: "Amount", field: "amount",id:"amount",sortable:true},
+	                  {name: "Account Holder Name", field: "accountName",id:"accountName",sortable:true},
+	                  {name: "Description", field: "description",id:"description",sortable:true},
+	                  {name: "Mobile Number", field: "accountId",id:"accountId",sortable:true}
 	              ];
 			return columnDefs;
 		}
@@ -60,11 +61,11 @@ var gridCfgService = gridModule.factory("gridConfigSvc",[function(){
 	}
 }]);
 
-var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridConfigSvc){
+var gridService  = gridModule.factory("gridSvc",["gridConfigSvc","formatters",function(gridConfigSvc,formatters){
 	var gridService;
 	var grid = {};
 	var gridData = [];
-	var fields = ['id','transactionDate','amount','accountId','description'];
+	var fields = ['id','transactionDate','amount','accountName','description','accountId'];
 	gridService = {
 		"getGrid" : function() {
 			var columnDefs = gridConfigSvc.getColDefs();
@@ -111,4 +112,17 @@ var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridCo
 		}
  	}
 	return gridService;
+}]);
+
+gridModule.factory('formatters',['$filter',function($filter){
+	
+	var formatters  = {
+		
+		"dateFormatter" : function() {
+			return  function(row, cell, value, columnDef, dataContext) {
+				return $filter('date')(value,'mediumDate');
+			}
+		}
+	}
+	return formatters;
 }])

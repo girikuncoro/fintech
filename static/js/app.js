@@ -34,16 +34,36 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 	}
 
 	$scope.individualTransaction = {
-		accountId:'+16073799018',
-		amount:'500.00',
-		description:'Hi!!'
+		to : {
+			accountId:'+5217222842257',
+			amount:'500.00',
+			description:'Hi!!'
+		},
+		requesterId:'+5211553788466'
 	};
 
-	$scope.makeIndividualTransaction = function() {
+	$scope.individualTransaction1 = {
+		to :{
+			accountId:'+11234567899',
+			amount:'1500.00',
+			description:'Hi!!'
+		},
+		requesterId:'+5217222842257'
+	};
+
+	$scope.makeIndividualTransaction = function(val) {
 		var data = [];
-		data.push($scope.individualTransaction);
-		transactionSvc.makeTransactions(data);
+		if(val) {
+			data.push($scope.individualTransaction1.to);
+			transactionSvc.makeTransactions(data,$scope.individualTransaction1.requesterId);
+		}
+		else {
+			data.push($scope.individualTransaction.to);
+			transactionSvc.makeTransactions(data,$scope.individualTransaction.requesterId);
+		}
+		
 	}
+
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -72,7 +92,7 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 			var data = {};
 			data['requests']  = transactionData;
 			data['requestType'] = 'Send';
-			data['requesterId'] = 'Abhishek';
+			data['requesterId'] = '+11234567899';
 
 			var url = "saveTransactions";
 			console.log(transactionData);
@@ -86,11 +106,11 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 
 			})
 		},
-		'makeIndividualTransaction' : function(data) {
+		'makeIndividualTransaction' : function(data,requesterId) {
 			var data = {};
 			data['requests']  = data;
 			data['requestType'] = 'Send';
-			data['requesterId'] = 'Abhishek';
+			data['requesterId'] = requesterId;
 
 			var url = "saveTransactions";
 			console.log(transactionData);
