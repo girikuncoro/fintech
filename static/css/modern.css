@@ -53,6 +53,7 @@ input[type="amount"]:focus {
   color: black;
   opacity: 0.5;
   font-variant: small-caps;
+  padding: 25px 15px;
   transition: all 0.25s;
 }
 .nav-tabs.nav-justified > li.active > a {
