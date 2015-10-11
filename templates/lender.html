@@ -60,6 +60,11 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li class="text-center" id="balanceDisplay">Bal: $[[loggedInUserInfo.balance | number:2]]</li>
+                <li ng-repeat = "tab in sideBars"> 
+                    <a ng-click = "loadSideTab($index)"><i class="[[tab.iconCls]]"> </i></a>
+                </li>
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -79,19 +84,6 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <p class="text-center" style = "padding-top:10px;">Total Amount: $[[loggedInUserInfo.balance | number:2]]</p>
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li ng-repeat = "tab in sideBars"> 
-                            <a ng-click = "loadSideTab($index)"> <i class="[[tab.iconCls]]"> </i> [[tab.displayName]]</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
             
