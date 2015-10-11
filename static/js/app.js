@@ -155,14 +155,13 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 
 			})
 		},
-		'makeIndividualTransaction' : function(data,requesterId) {
+		'makeIndividualTransaction' : function(transactionData,requesterId) {
 			var data = {};
-			data['requests']  = data;
+			data['requests']  = transactionData;
 			data['requestType'] = 'Send';
 			data['requesterId'] = requesterId;
 
 			var url = "saveTransactions";
-			console.log(transactionData);
 			$http({
 				'method' : 'POST',
 				'data' : data,
