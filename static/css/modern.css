@@ -8,6 +8,24 @@ body {
     background-color: #f8f8f8;
 }
 
+input[type="text"],
+input[type="amount"] {
+  background: #CCC;
+  border: none;
+  border-radius: 0.5em;
+  box-shadow: none;
+  outline: none;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+}
+input[type="text"]:active,
+input[type="amount"]:active,
+input[type="text"]:focus,
+input[type="amount"]:focus {
+  background: #BBB;
+  border: 1px solid #DDD;
+}
+
 .nav-tabs.nav-justified > li > a {
   border: 1px solid #DDD;
   border-radius: 0.3em;
