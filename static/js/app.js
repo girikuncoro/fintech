@@ -24,8 +24,17 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		fileReader.readAsText(fileName);
 	}
 	
+	$scope.lendingTabs = [{'displayName' : 'Individual Transaction','templateName' : 'static/js/transactions/individualTransaction.html'},
+	                      {'displayName' : 'Bulk Transaction','templateName' : 'static/js/transactions/bulkTransaction.html'}]			
+	$scope.loadTab = function(index) {
+		$scope.currentLendingTab = $scope.lendingTabs[index];
+	}
 }]);
 
+modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
+}]);
 
 modernMobile.directive("fileHandler",[function() {
 	return {
@@ -40,23 +49,3 @@ modernMobile.directive("fileHandler",[function() {
 		}
 	}
 }])
-
-//myapp.factory('loginService',['$http',function($http) {
-//	var login;
-//	login = {
-//		'login' : function(username,pass) {
-//			$http({
-//				'method' : 'POST'
-//			}).then(function(success) {
-//				
-//			}, function(error){
-//				
-//			})
-//		}
-//	}
-//	
-//	return login;
-//
-//}])
-//
-

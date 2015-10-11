@@ -57,11 +57,7 @@ var gridCfgService = gridModule.factory("gridConfigSvc",[function(){
 var gridService  = gridModule.factory("gridSvc",["gridConfigSvc",function(gridConfigSvc){
 	var gridService;
 	var grid = {};
-	var gridData = [{id: "s001",transaction: "1444498540",	amount: "80000",account: "Maria Guadalupe",
-	
-			description: "Money is used to finance corn farming"}
-			
-			];
+	var gridData = [];
 	var fields = ['id','transaction','amount','account','description'];
 	gridService = {
 		"getGrid" : function() {
