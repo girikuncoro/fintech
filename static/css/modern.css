@@ -27,12 +27,15 @@ input[type="amount"]:focus {
 }
 
 .nav-tabs.nav-justified > li > a {
-  border: 1px solid #DDD;
-  border-radius: 0.3em;
-}
-.nav-tabs.nav-justified > li.active > a {
   border: none;
   border-radius: 0.3em;
+  opacity: 0.5;
+  transition: all 0.25s;
+}
+.nav-tabs.nav-justified > li.active > a {
+  background: none;
+  opacity: 1;
+  text-decoration: underline;
 }
 
 #wrapper {
