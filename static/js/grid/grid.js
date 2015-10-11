@@ -55,7 +55,7 @@ var gridCfgService = gridModule.factory("gridConfigSvc",['formatters',function(f
 	                  {name: "Description", field: "description",id:"description",sortable:true},
 	                  {name: "Mobile Number", field: "accountId",id:"accountId",sortable:true}
 	              ];
-			return columnDefs;
+			return columnDefs; 
 		}
 		
 	}
