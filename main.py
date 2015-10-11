@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 # from validation.login import validate
 from sns.send import addtotable, sendtotable
+from transaction.transaction import insert_transaction
+
 import os
 
 app = Flask(__name__)
@@ -29,9 +31,17 @@ def saveTransactions():
    # print(request.get_json(force=True));
     transactions = request.get_json(force=True)
     sendentries = transactions['requests'];
+    requesterId=transactions['requesterId']
 
     for transaction in sendentries:
+        tid=transaction['id']
         accountId = transaction['accountId'];
+        amount=transaction['amount']
+        tdate=transaction['transactionDate']
+        desc=transaction['description']
+        
+        insert_transaction(tid,accountId,requesterId,amount,tdate,desc)
+
         if(borrowers.get(accountId) != None):
             addtotable(borrowers.get(accountId))
             newEntry = {};
