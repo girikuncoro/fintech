@@ -1,5 +1,7 @@
 @import url('../lib/slick-grid//slick-default-theme.css');
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
 * {
   font-family: arial;
   /*font-size: 8pt;*/
@@ -7,6 +9,7 @@
 
 body {
   background: beige;
+  font-family: 'Raleway', sans-serif !important;
   padding: 0;
   margin: 8px;
 }
@@ -23,10 +26,14 @@ ul {
 }
 
 li {
-  padding: 0 0 0 14px;
-
+  background: url("../images/arrow_right_spearmint.png") no-repeat center left;
+  padding: 0;
   list-style: none;
   margin: 0;
+}
+
+#transaction-grid {
+  margin-bottom: 1em;
 }
 
 #myGrid {

@@ -6,17 +6,17 @@ classes should alter those!
 */
 
 .slick-header-columns {
-  background: url('images/header-columns-bg.gif') repeat-x center bottom;
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid #CCC;
 }
 
 .slick-header-column {
-  background: url('images/header-columns-bg.gif') repeat-x center bottom;
-  border-right: 1px solid silver;
+  border-right: 1px solid #CCC;
+}
+.slick-header-column:last-child {
+  border-right: none;
 }
 
 .slick-header-column:hover, .slick-header-column-active {
-  background: white url('images/header-columns-over-bg.gif') repeat-x center bottom;
 }
 
 .slick-headerrow {
