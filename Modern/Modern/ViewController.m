@@ -16,6 +16,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 
 @end
 
@@ -24,6 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSString *urlString = @"http://stormy-dawn-1526.herokuapp.com/client/1";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [_webView loadRequest:urlRequest];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

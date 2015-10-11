@@ -53,7 +53,9 @@ if __name__ == '__main__':
     #intake(ta)
     intake(ts)
     '''
-    #curl -X POST --data '[{"token":"798c038792891ae421d8987f8c3d3d354566785648655dd09599237c0eafa7e7","message":"Hi, how can I help?"}]' http://localhost:5000/send
+
+    #curl -X POST --data '[{"token":"dc4a74233b209534fe89400c5f05cd1657c8bc87f243e63a61267f87cd6bdae3","message”:”GET REKT"}]' http://localhost:5000/send
+    #curl -X POST --data '[{"token":"91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9a2c71","message":"GET REKT"}]' http://localhost:5000/send
 
     #curl -H "Content-Type: application/json" -X POST -d '[{"token":"6fc41ab30bf0e7e66995bb3962f134f5945e55ac9e5a07f41fde14049bee2ff1","message":"YOU ARE DUMBBB"}]' ec2-52-88-2-41.us-west-2.compute.amazonaws.com/send
     #curl -X POST --data '[{"token":"6fc41ab30bf0e7e66995bb3962f134f5945e55ac9e5a07f41fde14049bee2ff1","message":"I'm the angel twin"}, {"token":"6e6aad5ae119d3d474ff474a4b280c8445398261bf0e6a296c2b43a80778f729", "message": "I'm the angel twin"}]' http://localhost:5000/send
