@@ -48,7 +48,7 @@ var gridCfgService = gridModule.factory("gridConfigSvc",['formatters',function(f
 	return {
 		"getColDefs" : function() {
 			var columnDefs = [
-	                  {name: "Id", field: "id",id:"id",sortable:true},
+	                  {name: "ID", field: "id",id:"id",sortable:true},
 	                  {name: "Date", field: "transactionDate",id:"transactionDate",formatter:formatters.dateFormatter(),sortable:true },
 	                  {name: "Amount", field: "amount",id:"amount",sortable:true},
 	                  {name: "Account Holder Name", field: "accountName",id:"accountName",sortable:true},
