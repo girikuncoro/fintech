@@ -48,14 +48,16 @@ def get_transactions_for_id(userName):
     lst=[]
     
     for row in cur.fetchall():
-        data['transactionId'] = row[0]
+        data = {};
+        data['id'] = row[0]
         data['fromUser'] = row[1]
         data['toUser'] = row[2]
         data['amount'] = row[3]
-        data['transDate'] = row[4]
+        data['transactionDate'] = row[4]
+        data['description'] = row[5]
         lst.append(data)
 
-    return json.dumps(lst)
+    return lst;
 
 def main():
     print(get_transactions_for_id("divyesh"))

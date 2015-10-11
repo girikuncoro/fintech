@@ -6,8 +6,12 @@ sys.path.insert(0, './transaction')
 from transaction import insert_transaction
 from transaction import get_total_amount
 from transaction import get_user_info
+from transaction import get_transactions_for_id
 
 import os,simplejson
+
+#import transaction
+import os
 
 app = Flask(__name__)
 
@@ -18,6 +22,7 @@ borrowers = {
     "+5211553788466" : "798c038792891ae421d8987f8c3d3d354566785648655dd09599237c0eafa7e7",
     "+5217222842257" : "91b56d30714be8be162da744c2503f7aad199d3d937db31fa6d0e0de0a9a2c71"
 };
+
 @app.route("/")
 def main():
     return redirect(url_for('lender'))
@@ -44,7 +49,7 @@ def saveTransactions():
         tdate=transaction['transactionDate']
         desc=transaction['description']
         print "Inside transaction";
-        insert_transaction(tid,accountId,requesterId,amount,tdate,desc)
+        insert_transaction(tid,requesterId,accountId,amount,tdate,desc)
 
         if(borrowers.get(accountId) != None):
             addtotable(borrowers.get(accountId))
@@ -114,12 +119,25 @@ def getUserInfo() :
     userInfo = get_user_info(userId['userId']);
     userInformation = {};
     userInformation['accountId'] = userInfo[0];
-    userInformation['balance'] = result[1];
+    userInformation['balance'] = getRemainingBalance(result[1],userId['userId']);
     userInformation['currency'] = result[2];
     userInformation['name'] = userInfo[1];
     userInformation['role'] = userInfo[3]; 
     
     return simplejson.dumps(userInformation);
+
+
+def getRemainingBalance(totalBalance,userId):
+    data  = get_transactions_for_id(userId);
+    for trans in data:
+        print(trans['amount']);
+        totalBalance-=trans['amount'];
+    return totalBalance;    
+@app.route('/getTransactions/<userId>',methods=["GET"])
+def getTransactions(userId):
+   # userId = request.get_json(force=True);
+    data= get_transactions_for_id(userId);
+    return simplejson.dumps(data);
 
 port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":

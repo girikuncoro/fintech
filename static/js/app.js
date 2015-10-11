@@ -1,6 +1,6 @@
 'use strict';
 
-var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod']);
+var modernMobile = angular.module('modernMobile', ['ui.bootstrap','ngRoute','transactionGridMod','historyTransactionMod']);
 
 modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc","$rootScope", "transactionSvc","loginService",
 	function($scope,$http,$log,gridSvc,$rootScope,transactionSvc,loginService) {
@@ -14,10 +14,7 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 	$scope.readFileData = function(fileName) {
 		var fileReader = new FileReader();
 		fileReader.onload = function(event) {
-			$scope.b
 			var data = event.target.result;
-			//console.log(data);
-		//	gridSvc.refreshGridData(data);
 			$rootScope.$emit("reload-grid",data);
 		}
 		fileReader.readAsText(fileName);
@@ -68,11 +65,22 @@ modernMobile.controller('modernMobileCtrl', ["$scope", "$http","$log","gridSvc",
 		$scope.loggedInUser = user;
 		loginService.getUserInfo({userId:user}).then(function(success,data){
 			$scope.loggedInUserInfo = success.data;
+			loginService.setUserInfo($scope.loggedInUserInfo);
 		},function(error){
 			console.log("Some Error has Occured");
 		});
 	}
 
+	$scope.sideBars = [{'id':'dashBoard',displayName:'DashBoard',iconCls:'fa fa-dashboard fa-fw',link:''},
+						{'id':'newLending',displayName:'New Transaction',iconCls:'fa fa-send fa-fw',link:''},
+						{'id':'historyTransaction',displayName:'Past Transactions',iconCls:'fa fa-table fa-fw',link:'static/js/transactions/history.html'}];
+
+	$scope.loadSideTab = function(index) {
+		$scope.currentCentralPanel = $scope.sideBars[index];
+		$scope.history = true;
+		if(index != 2)
+			$scope.history=false;
+	}					
 }]);
 
 modernMobile.config(['$interpolateProvider', function ($interpolateProvider) {
@@ -96,6 +104,7 @@ modernMobile.directive("fileHandler",[function() {
 modernMobile.factory('loginService',['$http','$location',function($http,$location){
 
 	var loginService;
+	var userInfo = {};
 	loginService = {
 		'getUserInfo' : function(user) {
 
@@ -110,6 +119,12 @@ modernMobile.factory('loginService',['$http','$location',function($http,$locatio
 				'data' : user,
 				 'url' : url
 			});
+		},
+		setUserInfo : function(user) {
+			userInfo = user;
+		},
+		getInMemoryUserInfo : function(){
+			return userInfo;
 		}
 	}
 	return loginService;
@@ -154,6 +169,7 @@ modernMobile.factory('transactionSvc',['$http',function($http){
 			})
 		}
 	}
-
 	return transactionSvc;
 }]);
+
+
