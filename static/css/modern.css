@@ -8,6 +8,15 @@ body {
     background-color: #f8f8f8;
 }
 
+.nav-tabs.nav-justified > li > a {
+  border: 1px solid #DDD;
+  border-radius: 0.3em;
+}
+.nav-tabs.nav-justified > li.active > a {
+  border: none;
+  border-radius: 0.3em;
+}
+
 #wrapper {
     width: 100%;
 }
