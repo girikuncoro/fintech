@@ -1,31 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, abort
 from validation.login import validate
+from sns.send import addtotable, sendtotable
 import os
-import json
-import boto3
 
 app = Flask(__name__)
-snsresource = boto3.resource('sns', region_name='us-east-1')
-snsclient = boto3.client('sns', region_name='us-east-1')
 
 LENDER = "lender"
 CLIENT = "borrower"
 
-tokensandarns = {}
-
-def addtotable(token):
-    platform_endpoint=snsclient.create_platform_endpoint(
-        PlatformApplicationArn='arn:aws:sns:us-east-1:678216564308:app/APNS_SANDBOX/Modern',
-        Token=token
-    )
-    tokensandarns[token]=platform_endpoint['EndpointArn']
-
-def sendtotable(token):
-    arn=tokensandarns[token['token']]
-    platform_endpoint = snsresource.PlatformEndpoint(arn)
-    platform_endpoint.publish(
-        Message=token['message']
-    )
 
 @app.route("/")
 def main():
@@ -33,7 +15,7 @@ def main():
 
 @app.route('/send', methods=['GET', 'POST'])
 def sendstuffs():
-    sendentries=request.get_json(force=True)
+    sendentries = request.get_json(force=True)
     for token in sendentries:
         addtotable(token["token"])
         sendtotable(token)
@@ -55,7 +37,6 @@ def client():
 def auth():
     username = request.form["username"]
     password = request.form["password"]
-    print validate(username, password)
 
     if validate(username, password) == LENDER:
         return redirect(url_for('lender'))
@@ -66,4 +47,4 @@ def auth():
 
 port = int(os.environ.get('PORT', 5000))
 if __name__ == "__main__":
-    app.run(debug=True, port=port)
+    app.run(debug=True, port=port, host="0.0.0.0")
