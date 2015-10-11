@@ -27,6 +27,11 @@ body {
     }
 }
 
+.navbar-default {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
 .navbar-top-links {
     margin-right: 0;
 }

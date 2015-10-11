@@ -13,7 +13,10 @@ var gridModule = gridModule.controller("transactionGridCtrl",['$http','$scope',"
 			    enableCellNavigation: true,
 			    enableColumnReorder: false,
 			    forceFitColumns:true,
-			    fullWidthRows:true,syncColumnCellResize:true
+			    fullWidthRows:true,
+			    syncColumnCellResize:true,
+			    headerRowHeight: 32,
+			    rowHeight: 32
 			  };
 		var dataView = new Slick.Data.DataView();
 		var grid = new Slick.Grid(container, dataView, columns, options);
