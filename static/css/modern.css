@@ -30,7 +30,7 @@ input[type="amount"]:focus {
 
 .nav-tabs {
   margin: auto !important;
-  width: 320px !important;
+  width: 420px !important;
 }
 
 .nav-tabs.nav-justified > li > a {
@@ -49,9 +49,7 @@ input[type="amount"]:focus {
   opacity: 1;
   text-decoration: underline;
 }
-nav-tabs.nav-justified:hover > li,
-nav-tabs.nav-justified > li:hover,
-nav-tabs.nav-justified:hover > li {
+.nav-tabs.nav-justified > li.active > a:hover {
   border: none;
 }
 
