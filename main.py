@@ -126,7 +126,6 @@ def getUserInfo() :
     
     return simplejson.dumps(userInformation);
 
-
 def getRemainingBalance(totalBalance,userId):
     data  = get_transactions_for_id(userId);
     for trans in data:
