@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app = "modernMobile">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
+    <link href="{{ url_for('static', filename='css/modern.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/grid/grid.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/transactions/bulkTransaction.html') }}"></script>
+    <script src="{{ url_for('static', filename='js/transactions/individualTransaction.html') }}"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.event.drag/2.2/jquery.event.drag.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/slick-grid/slick.core.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/slick-grid/slick.dataview.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/slick-grid/slick.editors.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/slick-grid/slick.formatters.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/slick-grid/slick.grid.js')}}"></script>
+
+    <link href="{{ url_for('static', filename='css/example.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/slick-grid/slick.grid.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/slick-grid/slick-default-theme.css') }}">
+    <link href="{{ url_for('static', filename='css/modern.css') }}" rel="stylesheet">
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<meta charset="UTF-8">
+<title>Modern</title>
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Modern</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Wayne Johnson</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-send fa-fw"></i> New Transaction</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Past Transaction</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper" ng-controller = "modernMobileCtrl">
+        
+            <ul class="nav nav-tabs nav-justified" >
+                <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="" >
+                    <a ng-click = "loadTab($index)">[[lendingTab.displayName]]</a>
+                </li>
+            </ul>
+                <br/>
+                <div class = "row" >
+                    <div ng-include = "currentLendingTab.templateName"></div>
+                </div>
+                <button type="button" class="btn btn-success pull-right">Make Transaction</button>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</body>
+</html>
