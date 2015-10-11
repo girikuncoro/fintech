@@ -41,6 +41,11 @@ input[type="amount"]:focus {
   outline: none;
 }
 
+.navbar-right {
+  padding-left: 1em;
+  text-align: right;
+}
+
 .nav-tabs {
   height: 60px;
   margin: auto !important;
