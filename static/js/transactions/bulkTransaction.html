@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-12">
+		<form ng-submit="upload()">
+			<div class="input-group">
+				<span class="input-group-addon">Upload Transaction</span> <input
+					file-handler type="file" class="form-control"
+					ng-model="transactionFile">
+				<!-- <input type="submit" name = "uploadFile">	 -->
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row" ng-controller="transactionGridCtrl">
+	<div id="transaction-grid" style="max-height: 500px; min-height: 300px">
+	</div>
+</div>

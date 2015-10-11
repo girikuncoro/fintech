@@ -9,41 +9,42 @@
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
-    <link href="{{ url_for('static', filename='css/modern.css') }}" rel="stylesheet">
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/grid/grid.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/transactions/bulkTransaction.html') }}"></script>
-    <script src="{{ url_for('static', filename='js/transactions/individualTransaction.html') }}"></script>
+    <script src="js/app.js"></script>
+    <script src="js/grid/grid.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.event.drag/2.2/jquery.event.drag.min.js"></script>
     <script src="https://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
-    <script src="{{ url_for('static', filename='lib/slick-grid/slick.core.js')}}"></script>
-    <script src="{{ url_for('static', filename='lib/slick-grid/slick.dataview.js')}}"></script>
-    <script src="{{ url_for('static', filename='lib/slick-grid/slick.editors.js')}}"></script>
-    <script src="{{ url_for('static', filename='lib/slick-grid/slick.formatters.js')}}"></script>
-    <script src="{{ url_for('static', filename='lib/slick-grid/slick.grid.js')}}"></script>
+	<script src="lib/slick-grid/slick.core.js"></script>
+	<script src="lib/slick-grid/slick.dataview.js"></script>
+	<script src="lib/slick-grid/slick.editors.js"></script>
+	<script src="lib/slick-grid/slick.formatters.js"></script>
+	<script src="lib/slick-grid/slick.grid.js"></script>
 
-    <link href="{{ url_for('static', filename='css/example.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="lib/slick-grid/slick.grid.js"></script>
+<link href="css/example.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="lib/slick-grid/slick.grid.css">
+	<link rel="stylesheet" type="text/css" href="lib/slick-grid/slick-default-theme.css">
+	 <link href="css/modern.css" rel="stylesheet">
+	
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/slick-grid/slick.grid.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/slick-grid/slick-default-theme.css') }}">
-    <link href="{{ url_for('static', filename='css/modern.css') }}" rel="stylesheet">
-
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     
+	
 <meta charset="UTF-8">
-<title>Modern</title>
+<title>Some App</title>
 </head>
 <body>
-    <div id="wrapper">
-
+	<div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -85,7 +86,7 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-send fa-fw"></i> New Transaction</a>
+                            <a href="#"><i class="fa fa-send fa-fw"></i> Lending </a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Past Transaction</a>
@@ -96,20 +97,18 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div id="page-wrapper" ng-controller = "modernMobileCtrl">
-        
-            <ul class="nav nav-tabs nav-justified" >
-                <li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="" >
-                    <a ng-click = "loadTab($index)">[[lendingTab.displayName]]</a>
-                </li>
-            </ul>
-                <br/>
-                <div class = "row" >
-                    <div ng-include = "currentLendingTab.templateName"></div>
-                </div>
-                <button type="button" class="btn btn-success pull-right">Make Transaction</button>
-        </div>
-        <!-- /#page-wrapper -->
+		<div id="page-wrapper" ng-controller = "modernMobileCtrl">
+		
+			<ul class="nav nav-tabs nav-justified" >
+				<li ng-repeat = "lendingTab in lendingTabs" role="presentation" class="" ng-click = "loadTab($index)"><a href="#">{{lendingTab.displayName}}</a></li>
+			</ul>
+				<br/>
+				<div class = "row" >
+					<div ng-include = "currentLendingTab.templateName"></div>
+				</div>
+				<button type="button" class="btn btn-success pull-right">Make Transaction</button>
+		</div>
+		<!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
