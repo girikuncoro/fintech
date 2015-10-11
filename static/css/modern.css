@@ -4,8 +4,14 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+
 body {
     background-color: #f8f8f8;
+    font-family: 'Raleway', sans-serif !important;
+}
+* {
+  font-family: 'Raleway', sans-serif !important;
 }
 
 input[type="text"],
