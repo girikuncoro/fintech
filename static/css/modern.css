@@ -29,11 +29,14 @@ input[type="amount"]:focus {
 .nav-tabs.nav-justified > li > a {
   border: none;
   border-radius: 0.3em;
+  color: black;
   opacity: 0.5;
   transition: all 0.25s;
 }
 .nav-tabs.nav-justified > li.active > a {
   background: none;
+  border: none;
+  color: black;
   opacity: 1;
   text-decoration: underline;
 }
