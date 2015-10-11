@@ -10,9 +10,9 @@ body {
 
 input[type="text"],
 input[type="amount"] {
-  background: #EEE;
+  background: #F8F8F8;
   border: 1px solid white;
-  border-radius: 0.5em !important;
+  border-radius: 0.25em !important;
   box-shadow: none;
   outline: none;
   transition: all 0.25s;
@@ -24,6 +24,8 @@ input[type="text"]:focus,
 input[type="amount"]:focus {
   background: #E0E0E0;
   border: 1px solid #DDD;
+  box-shadow: none;
+  outline: none;
 }
 
 .nav-tabs.nav-justified > li > a {
