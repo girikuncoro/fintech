@@ -1,5 +1,5 @@
 ## Project
-Financial Tech Hackathon at Cornell Tech on 9-11 October 2015, New York. Heroku app url: http://stormy-dawn-1526.herokuapp.com
+Financial Tech Hackathon (https://fintechhackathon15.splashthat.com) at Cornell Tech on 9-11 October 2015, New York. This project won first place for "Next 10 million fintech mobile users" award. Heroku app url: http://stormy-dawn-1526.herokuapp.com
 
 ## Setup
 This project is currently configured for OSx/Unix.
