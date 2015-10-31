@@ -13,7 +13,23 @@
 					  <input type="amount" class="form-control" placeholder = "Transaction amount" id="amount">
 					</div>
 				</form>
-				 <button type="button" class="btn btn-success pull-right" ng-click = "saveBulkTransaction()">Make Transaction</button>
+				 <button type="button" id="button" class="btn btn-success pull-right" ng-click = "saveBulkTransaction()" onclick="setColor('button', '#3aa21e')";>Make Transaction</button>
 		</div>
 	</div>		
 </div>
+
+<script>
+function setColor(btn, color){
+    var count=1;
+    var property = document.getElementById(btn);
+    if (count == 0){
+        property.style.backgroundColor = "#3aa21e"
+        count=1;        
+    }
+    else{
+        property.style.backgroundColor = "#2a2a2a"
+        count=0;
+    }
+
+}
+</script>
